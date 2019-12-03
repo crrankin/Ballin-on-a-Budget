@@ -8,6 +8,7 @@ package com.example.ballinonabudget;
 
 import java.util.HashMap;
 import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 @Entity(tableName = "Budget")
 public class Budget {
