@@ -36,5 +36,20 @@ public class Items {
     public String getHyperlink(){
         return hyperlink;
     }
-    
+
+    public void editPurchaseName(String newPurchaseName){
+        purchaseName = newPurchaseName;
+    }
+
+    public void editPurchaseAmount(double newPurchaseAmount){
+        purchaseAmount = newPurchaseAmount;
+    }
+
+    public void editCategory(String newCategory){
+        purchaseCategory = newCategory;
+    }
+
+    public void editHyperLink(String newHyperLink){
+        hyperlink = newHyperLink;
+    }
 }
