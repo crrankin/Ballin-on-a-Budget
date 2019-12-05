@@ -11,7 +11,7 @@ import edu.iastate.ballinonabudget.Objects.Budget;
 @Database(entities = {Budget.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
     private static AppDatabase INSTANCE;
-    public abstract BudgetDao bugdetDao();
+    public abstract BudgetDao budgetDao();
 
     public static AppDatabase getAppDatabase(Context context) {
         if(INSTANCE == null) {
