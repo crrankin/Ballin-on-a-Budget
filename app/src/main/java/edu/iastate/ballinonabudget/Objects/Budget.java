@@ -33,9 +33,9 @@ public class Budget {
 
     /**
      * Constructs a budget
-     * @param name
-     * @param totalAmount
-     * @param items
+     * @param name the name of the budget
+     * @param totalAmount the total amount of money to be used in the budget
+     * @param items the items that make up the budget
      */
     public Budget(String name, double totalAmount, List<Items> items){
         this.name = name;

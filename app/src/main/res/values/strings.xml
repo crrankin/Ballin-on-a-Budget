@@ -3,4 +3,10 @@
     <string name="menu_add_budget">Add Budget</string>
     <string name="title_activity_add_budget">AddBudgetActivity</string>
     <string name="title_activity_add_items">AddItemsActivity</string>
+
+    <!-- Activity Add Items values-->
+    <string name="activity_add_items_name">Purchase Name:</string>
+    <string name="activity_add_items_amount">Amount:</string>
+    <string name="activity_add_items_hyperlink">Link (optional):</string>
+
 </resources>
