@@ -1,4 +1,4 @@
-package com.example.ballinonabudget;
+package edu.example.ballinonabudget;
 
 import android.content.Context;
 
