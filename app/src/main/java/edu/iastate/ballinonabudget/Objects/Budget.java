@@ -6,6 +6,7 @@ package edu.iastate.ballinonabudget.Objects;
  * Each budget has a unique identifier.
  */
 
+import java.util.ArrayList;
 import java.util.List;
 
 import androidx.room.ColumnInfo;
@@ -29,18 +30,16 @@ public class Budget {
 
     @ColumnInfo(name = "items")
     @TypeConverters(BudgetTypeConverters.class)
-    private List<Items> items; //list of the purchases/items in the budget
+    private List<Items> items = new ArrayList<>(); //list of the purchases/items in the budget
 
     /**
      * Constructs a budget
      * @param name the name of the budget
      * @param totalAmount the total amount of money to be used in the budget
-     * @param items the items that make up the budget
      */
-    public Budget(String name, double totalAmount, List<Items> items){
+    public Budget(String name, double totalAmount){
         this.name = name;
         this.totalAmount = totalAmount;
-        this.items = items;
     }
 
     /*

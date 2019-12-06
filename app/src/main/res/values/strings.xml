@@ -8,5 +8,7 @@
     <string name="activity_add_items_name">Purchase Name:</string>
     <string name="activity_add_items_amount">Amount:</string>
     <string name="activity_add_items_hyperlink">Link (optional):</string>
+    <string name="budget_form_name">Name</string>
+    <string name="budget_form_max_amount">Limit</string>
 
 </resources>
