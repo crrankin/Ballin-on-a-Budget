@@ -7,7 +7,7 @@
     tools:context=".Activities.AddItemsActivity">
 
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -26,7 +26,7 @@
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
             <EditText
-                android:id="@+id/nameInput"
+                android:id="@+id/nameInputItems"
                 android:inputType="text"
                 android:autofillHints= "Guitar pick"
                 android:layout_width="wrap_content"
@@ -68,6 +68,26 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/cancelButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="cancelItem"
+                    android:text="@string/cancel_button" />
+
+                <Button
+                    android:id="@+id/addButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="addItem"
+                    android:text="@string/add_button" />
+            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>

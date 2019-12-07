@@ -88,4 +88,14 @@ public class Budget {
     public void setCurrentTotal(double currentTotal) {
         this.currentTotal = currentTotal;
     }
+
+    public void addItem(Items item) {
+        items.add(item);
+        currentTotal+=item.getPurchaseAmount();
+    }
+
+    public void removeItem(int i) {
+        currentTotal-=items.get(i).getPurchaseAmount();
+        items.remove(i);
+    }
 }

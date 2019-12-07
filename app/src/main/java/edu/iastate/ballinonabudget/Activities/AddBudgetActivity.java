@@ -3,35 +3,27 @@ package edu.iastate.ballinonabudget.Activities;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
 import android.widget.EditText;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import edu.iastate.ballinonabudget.DatabaseConfig.AppDatabase;
 import edu.iastate.ballinonabudget.Objects.Budget;
-import edu.iastate.ballinonabudget.Objects.Items;
 import edu.iastate.ballinonabudget.R;
 
 public class AddBudgetActivity extends AppCompatActivity {
 
     private AppDatabase database;
-    EditText nameText;
-    EditText amountText;
+    private EditText nameText;
+    private EditText amountText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_budget);
 
-        nameText = findViewById(R.id.nameInput);
+        nameText = findViewById(R.id.nameInputBudget);
         amountText = findViewById(R.id.maxAmountInput);
 
         database = AppDatabase.getAppDatabase(this);
@@ -68,5 +60,4 @@ public class AddBudgetActivity extends AppCompatActivity {
         Intent goHome = new Intent(this, MainActivity.class);
         startActivity(goHome);
     }
-
 }
