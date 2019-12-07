@@ -1,5 +1,7 @@
 package edu.iastate.ballinonabudget.Objects;
 
+import java.io.Serializable;
+
 /*What are items in this app
 They are purchases
 They have the following qualities
@@ -8,7 +10,7 @@ Price
 Type
 Hyperlink (Optional)
 * */
-public class Items {
+public class Items implements Serializable {
     private String purchaseName;
     private double purchaseAmount;
     private String purchaseCategory;

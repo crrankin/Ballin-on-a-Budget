@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
         database = AppDatabase.getAppDatabase(this);
         budgetList = database.budgetDao().getAll();
-        listView = findViewById(R.id.list);
+        listView = findViewById(R.id.budget_list);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {

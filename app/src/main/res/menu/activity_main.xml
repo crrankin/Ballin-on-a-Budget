@@ -4,4 +4,8 @@
         android:id="@+id/menu_add_budget"
         android:title="@string/menu_add_budget" />
 
+    <item
+        android:id="@+id/menu_delete_budget"
+        android:title="@string/menu_delete_budget"/>
+
 </menu>

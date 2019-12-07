@@ -23,13 +23,16 @@ import edu.iastate.ballinonabudget.R;
 public class AddBudgetActivity extends AppCompatActivity {
 
     private AppDatabase database;
+    EditText nameText;
+    EditText amountText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_budget);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+
+        nameText = findViewById(R.id.nameInput);
+        amountText = findViewById(R.id.maxAmountInput);
 
         database = AppDatabase.getAppDatabase(this);
     }
@@ -51,14 +54,12 @@ public class AddBudgetActivity extends AppCompatActivity {
      */
     public void addBudget(View view){
         //Collects the data from views
-        EditText nameText = findViewById(R.id.nameInput);
-        EditText amountText = findViewById(R.id.amountInput);
+
 
         //create a new Budget object using the variables we just made
         String name = nameText.getText().toString();
         double amount = Double.parseDouble(amountText.getText().toString());
-        List<Items> items = new ArrayList<>(); //start with a blank items/purchases list
-        Budget b = new Budget(name, amount, items);
+        Budget b = new Budget(name, amount);
 
         //insert new budget into our database
         database.budgetDao().insertBudget(b);

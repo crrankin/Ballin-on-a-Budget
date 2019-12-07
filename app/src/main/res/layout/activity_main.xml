@@ -7,7 +7,7 @@
     tools:context="edu.iastate.ballinonabudget.Activities.MainActivity">
 
     <ListView
-        android:id="@+id/list"
+        android:id="@+id/budget_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 </LinearLayout>

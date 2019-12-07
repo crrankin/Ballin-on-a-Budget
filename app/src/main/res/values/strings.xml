@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">Ballin on a Budget</string>
     <string name="menu_add_budget">Add Budget</string>
+    <string name="menu_add_item">Add Item</string>
+    <string name="menu_open_pie_chart">Open Pie Chart</string>
+    <string name="menu_delete_budget">Delete Budget</string>
+    <string name="menu_delete_items">Delete Items</string>
     <string name="title_activity_add_budget">AddBudgetActivity</string>
     <string name="title_activity_add_items">AddItemsActivity</string>
 
@@ -10,5 +14,8 @@
     <string name="activity_add_items_hyperlink">Link (optional):</string>
     <string name="budget_form_name">Name</string>
     <string name="budget_form_max_amount">Limit</string>
+    <string name="cancel_button">Cancel</string>
+    <string name="add_button">Add</string>
+    <string name="ItemsKey">Item</string>
 
 </resources>
