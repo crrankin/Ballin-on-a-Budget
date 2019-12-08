@@ -72,4 +72,9 @@ public class Items implements Serializable {
     public String getPurchaseYear() {
         return purchaseYear;
     }
+
+    @Override
+    public String toString() {
+        return purchaseName + " ... " + purchaseAmount;
+    }
 }

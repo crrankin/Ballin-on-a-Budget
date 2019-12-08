@@ -98,4 +98,9 @@ public class Budget {
         currentTotal-=items.get(i).getPurchaseAmount();
         items.remove(i);
     }
+
+    @Override
+    public String toString() {
+        return title;
+    }
 }
