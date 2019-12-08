@@ -95,6 +95,10 @@ public class BudgetActivity extends AppCompatActivity {
                 pieChartIntent.putExtra("uid", id);
                 startActivity(pieChartIntent);
                 return true;
+            case R.id.menu_go_back_to_home:
+                Intent goHomeIntent = new Intent(this, MainActivity.class);
+                startActivity(goHomeIntent);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
