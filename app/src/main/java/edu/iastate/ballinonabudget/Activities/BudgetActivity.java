@@ -61,6 +61,7 @@ public class BudgetActivity extends AppCompatActivity {
                 Intent intent = new Intent(BudgetActivity.this, ItemsInfoActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable(getString(R.string.ItemsKey), selectedItem);
+                bundle.putInt("uid", id);
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
@@ -99,6 +100,10 @@ public class BudgetActivity extends AppCompatActivity {
                 Intent goHomeIntent = new Intent(this, MainActivity.class);
                 startActivity(goHomeIntent);
                 return true;
+//            case R.id.menu_delete_budget:
+//                Intent deleteItemIntent = new Intent(this, MainActivity.class);
+//                startActivity(deleteItemIntent);
+//                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
