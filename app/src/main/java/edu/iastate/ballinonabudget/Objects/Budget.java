@@ -90,21 +90,21 @@ public class Budget {
         return title;
     }
 
-    public double getCurrentTotalForMonth(int month, String[] monthsArray) {
+    public double getCurrentTotalForMonth(int month) {
         double currentTotal = 0.0;
         for(Items i : getItems()) {
-            if(i.getPurchaseMonth().equals(monthsArray[month].substring(0, 3))) {
+            if(i.getPurchaseMonth() == month) {
                 currentTotal += i.getPurchaseAmount();
             }
         }
         return currentTotal;
     }
 
-    public List<Items> getItemsForMonth(int month, String[] monthsArray) {
+    public List<Items> getItemsForMonth(int month) {
         List<Items> listToShow = new ArrayList<>();
 
         for(Items i : getItems()) {
-            if(i.getPurchaseMonth().equals(monthsArray[month].substring(0, 3))) {
+            if(i.getPurchaseMonth() == month) {
                 listToShow.add(i);
             }
         }

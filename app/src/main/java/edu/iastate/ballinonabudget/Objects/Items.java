@@ -16,10 +16,10 @@ public class Items implements Serializable {
     private String purchaseCategory;
     private boolean recurring;
     private String hyperlink;
-    private String purchaseMonth;
-    private String purchaseYear;
+    private int purchaseMonth;
+    private int purchaseYear;
 
-    public Items(String name, double amount, String category, String link, boolean recurring, String purchaseMonth, String purchaseYear) {
+    public Items(String name, double amount, String category, String link, boolean recurring, int purchaseMonth, int purchaseYear) {
         purchaseName = name;
         purchaseAmount = amount;
         purchaseCategory = category;
@@ -65,11 +65,11 @@ public class Items implements Serializable {
         return recurring;
     }
 
-    public String getPurchaseMonth() {
+    public int getPurchaseMonth() {
         return purchaseMonth;
     }
 
-    public String getPurchaseYear() {
+    public int getPurchaseYear() {
         return purchaseYear;
     }
 

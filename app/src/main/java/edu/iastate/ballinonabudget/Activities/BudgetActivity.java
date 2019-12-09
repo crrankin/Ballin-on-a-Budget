@@ -89,7 +89,7 @@ public class BudgetActivity extends AppCompatActivity {
         selectedBudget = database.budgetDao().findByID(id);
         itemsList = selectedBudget.getItems();
 
-        List<Items> listToShow = selectedBudget.getItemsForMonth(currentMonth, monthsArray);
+        List<Items> listToShow = selectedBudget.getItemsForMonth(currentMonth);
 
         currentTotal.setText(String.format(Locale.ENGLISH, "%1$,.2f", getCurrentTotal(listToShow)));
 
@@ -153,6 +153,6 @@ public class BudgetActivity extends AppCompatActivity {
     }
 
     public double getCurrentTotal(List<Items> list) {
-        return selectedBudget.getCurrentTotalForMonth(currentMonth, monthsArray);
+        return selectedBudget.getCurrentTotalForMonth(currentMonth);
     }
 }

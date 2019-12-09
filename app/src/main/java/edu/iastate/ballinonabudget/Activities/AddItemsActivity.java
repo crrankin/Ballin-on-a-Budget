@@ -1,23 +1,17 @@
 package edu.iastate.ballinonabudget.Activities;
 
-import android.content.ClipData;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.CalendarView;
 import android.widget.EditText;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 import edu.iastate.ballinonabudget.DatabaseConfig.AppDatabase;
 import edu.iastate.ballinonabudget.Objects.Budget;
@@ -32,6 +26,8 @@ public class AddItemsActivity extends AppCompatActivity {
     private EditText amountText;
     private EditText hrefText;
     private CalendarView calendar;
+    private int monthInt;
+    private int yearInt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,13 +38,23 @@ public class AddItemsActivity extends AppCompatActivity {
         amountText = findViewById(R.id.amountInput);
         hrefText = findViewById(R.id.hyperlinkInput);
         calendar = findViewById(R.id.calendarView);
-
+        Calendar cal = Calendar.getInstance();
+        monthInt = cal.get(Calendar.MONTH);
+        yearInt = cal.get(Calendar.YEAR);
         database = AppDatabase.getAppDatabase(this);
         Intent intent = getIntent();
         int id = intent.getIntExtra("uid", 0);
         selectedBudget = database.budgetDao().findByID(id);
 
         calendar.setDate(Calendar.getInstance().getTimeInMillis(),false,true);
+
+        calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+                monthInt = month;
+                yearInt = year;
+            }
+        });
 
     }
 
@@ -63,11 +69,8 @@ public class AddItemsActivity extends AppCompatActivity {
         double amount = Double.parseDouble(amountText.getText().toString());
         String href = hrefText.getText().toString();
 
-        String monthString  = (String) DateFormat.format("MMM",  calendar.getDate());
-        String year         = (String) DateFormat.format("yyyy", calendar.getDate());
-
         //Needs to be updated to include month, recurring, year and category.
-        Items item = new Items(name, amount, "", href, false, monthString, year);
+        Items item = new Items(name, amount, "", href, false, monthInt, yearInt);
 
         selectedBudget.addItem(item);
 

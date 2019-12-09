@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
+import java.util.Locale;
 
 import edu.iastate.ballinonabudget.DatabaseConfig.AppDatabase;
 import edu.iastate.ballinonabudget.Objects.Budget;
@@ -34,13 +35,15 @@ public class ItemsInfoActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
 
+        String[] monthsArray = getResources().getStringArray(R.array.months);
+
         try {
             id = bundle.getInt("uid", 0);
             items = (Items) bundle.getSerializable("Item");
         } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(this, "Failed to Fetch Item", Toast.LENGTH_LONG).show();
-            items = new Items("Default", 0, "Default", "Default", false, "Default", "Default");
+            items = new Items("Default", 0, "Default", "Default", false, 0, 2019);
         }
 
         //display item information
@@ -50,9 +53,9 @@ public class ItemsInfoActivity extends AppCompatActivity {
         TextView name = findViewById(R.id.item_name);
         name.setText(items.getPurchaseTitle());
         TextView month = findViewById(R.id.item_month);
-        month.setText(items.getPurchaseMonth());
+        month.setText(monthsArray[items.getPurchaseMonth()]);
         TextView year = findViewById(R.id.item_year);
-        year.setText(items.getPurchaseYear());
+        year.setText(String.format(Locale.ENGLISH, "%d", items.getPurchaseYear()));
         TextView category = findViewById(R.id.item_category);
         category.setText(items.getCategory());
         TextView hyperlink = findViewById(R.id.item_hyperlink);
