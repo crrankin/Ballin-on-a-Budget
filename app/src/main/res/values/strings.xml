@@ -19,6 +19,22 @@
     <string name="add_button">Add</string>
     <string name="ItemsKey">Item</string>
     <string name="activity_add_items_date">Date</string>
+    <string name="month">Month</string>
+
+    <string-array name="months">
+        <item>January</item>
+        <item>February</item>
+        <item>March</item>
+        <item>April</item>
+        <item>May</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
+        <item>September</item>
+        <item>October</item>
+        <item>November</item>
+        <item>December</item>
+    </string-array>
 
 
 </resources>

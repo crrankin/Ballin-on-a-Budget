@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,6 +13,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -27,6 +31,10 @@ public class BudgetActivity extends AppCompatActivity {
     private ListView listView;
     private List<Items> itemsList;
     private int id;
+    private int currentMonth;
+    private String[] monthsArray;
+    private TextView monthView;
+    private TextView currentTotal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +44,11 @@ public class BudgetActivity extends AppCompatActivity {
         database = AppDatabase.getAppDatabase(this);
 
         listView = findViewById(R.id.item_list);
+        monthsArray = getResources().getStringArray(R.array.months);
+        Calendar calendar = Calendar.getInstance();
+        currentMonth = calendar.get(Calendar.MONTH);
+
+        String monthName = monthsArray[currentMonth];
 
         Intent intent = getIntent();
         id = intent.getIntExtra("uid", 0);
@@ -45,11 +58,13 @@ public class BudgetActivity extends AppCompatActivity {
         TextView temp = findViewById(R.id.budget_name);
         temp.setText(selectedBudget.getTitle());
 
-        temp = findViewById(R.id.current_total);
-        temp.setText(String.format(Locale.ENGLISH, "%1$,.2f", selectedBudget.getCurrentTotal()));
-
         temp = findViewById(R.id.max_total);
         temp.setText(String.format(Locale.ENGLISH, "%1$,.2f", selectedBudget.getTotalAmount()));
+
+        monthView = findViewById(R.id.currentMonth);
+        monthView.setText(monthName);
+
+        currentTotal = findViewById(R.id.current_total);
 
         itemsList = selectedBudget.getItems();
 
@@ -73,8 +88,18 @@ public class BudgetActivity extends AppCompatActivity {
         super.onResume();
         selectedBudget = database.budgetDao().findByID(id);
         itemsList = selectedBudget.getItems();
+        List<Items> listToShow = new ArrayList<>();
+
+        for(Items i : itemsList) {
+            if(i.getPurchaseMonth().equals(monthsArray[currentMonth].substring(0, 3))) {
+                listToShow.add(i);
+            }
+        }
+
+        currentTotal.setText(String.format(Locale.ENGLISH, "%1$,.2f", getCurrentTotal(listToShow)));
+
         ArrayAdapter<Items> adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_list_item_1, itemsList);
+                android.R.layout.simple_list_item_1, listToShow);
         listView.setAdapter(adapter);
     }
 
@@ -107,5 +132,38 @@ public class BudgetActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    public void updateList() {
+        monthView.setText(monthsArray[currentMonth]);
+        onResume();
+    }
+
+    public void onLeftClick(View view) {
+        if(currentMonth == 0) {
+            currentMonth = 11;
+        } else {
+            currentMonth--;
+        }
+        updateList();
+    }
+
+    public void onRightClick(View view) {
+        if(currentMonth == 11) {
+            currentMonth = 0;
+        } else {
+            currentMonth++;
+        }
+        updateList();
+    }
+
+    public double getCurrentTotal(List<Items> list) {
+        double count = 0;
+
+        for(Items i : list) {
+            count += i.getPurchaseAmount();
+        }
+
+        return count;
     }
 }
