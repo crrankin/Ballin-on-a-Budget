@@ -88,13 +88,8 @@ public class BudgetActivity extends AppCompatActivity {
         super.onResume();
         selectedBudget = database.budgetDao().findByID(id);
         itemsList = selectedBudget.getItems();
-        List<Items> listToShow = new ArrayList<>();
 
-        for(Items i : itemsList) {
-            if(i.getPurchaseMonth().equals(monthsArray[currentMonth].substring(0, 3))) {
-                listToShow.add(i);
-            }
-        }
+        List<Items> listToShow = selectedBudget.getItemsForMonth(currentMonth, monthsArray);
 
         currentTotal.setText(String.format(Locale.ENGLISH, "%1$,.2f", getCurrentTotal(listToShow)));
 
@@ -158,12 +153,6 @@ public class BudgetActivity extends AppCompatActivity {
     }
 
     public double getCurrentTotal(List<Items> list) {
-        double count = 0;
-
-        for(Items i : list) {
-            count += i.getPurchaseAmount();
-        }
-
-        return count;
+        return selectedBudget.getCurrentTotalForMonth(currentMonth, monthsArray);
     }
 }

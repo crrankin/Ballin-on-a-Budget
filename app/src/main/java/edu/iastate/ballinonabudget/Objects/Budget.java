@@ -28,9 +28,6 @@ public class Budget {
     @ColumnInfo(name = "total_amount")
     private double totalAmount; //total amount for the entire budget
 
-    @ColumnInfo(name = "current_total")
-    private double currentTotal;
-
     @ColumnInfo(name = "items")
     @TypeConverters(BudgetTypeConverters.class)
     private List<Items> items = new ArrayList<>(); //list of the purchases/items in the budget
@@ -43,7 +40,6 @@ public class Budget {
     public Budget(String title, double totalAmount){
         this.title = title;
         this.totalAmount = totalAmount;
-        this.currentTotal = 0;
     }
 
     /*
@@ -65,10 +61,6 @@ public class Budget {
         return this.items;
     }
 
-    public double getCurrentTotal() {
-        return currentTotal;
-    }
-
     public void  setUid(int uid) {
         this.uid = uid;
     }
@@ -85,22 +77,38 @@ public class Budget {
         this.items = items;
     }
 
-    public void setCurrentTotal(double currentTotal) {
-        this.currentTotal = currentTotal;
-    }
-
     public void addItem(Items item) {
         items.add(item);
-        currentTotal+=item.getPurchaseAmount();
     }
 
     public void removeItem(int i) {
-        currentTotal-=items.get(i).getPurchaseAmount();
         items.remove(i);
     }
 
     @Override
     public String toString() {
         return title;
+    }
+
+    public double getCurrentTotalForMonth(int month, String[] monthsArray) {
+        double currentTotal = 0.0;
+        for(Items i : getItems()) {
+            if(i.getPurchaseMonth().equals(monthsArray[month].substring(0, 3))) {
+                currentTotal += i.getPurchaseAmount();
+            }
+        }
+        return currentTotal;
+    }
+
+    public List<Items> getItemsForMonth(int month, String[] monthsArray) {
+        List<Items> listToShow = new ArrayList<>();
+
+        for(Items i : getItems()) {
+            if(i.getPurchaseMonth().equals(monthsArray[month].substring(0, 3))) {
+                listToShow.add(i);
+            }
+        }
+
+        return listToShow;
     }
 }
