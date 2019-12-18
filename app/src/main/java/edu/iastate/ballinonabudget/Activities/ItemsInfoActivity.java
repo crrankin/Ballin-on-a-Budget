@@ -74,10 +74,6 @@ public class ItemsInfoActivity extends AppCompatActivity {
                 Intent goHomeIntent = new Intent(this, MainActivity.class);
                 startActivity(goHomeIntent);
                 return true;
-            case R.id.menu_delete_item:
-                Intent deleteItemIntent = new Intent(this, BudgetActivity.class);
-                startActivity(deleteItemIntent);
-                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

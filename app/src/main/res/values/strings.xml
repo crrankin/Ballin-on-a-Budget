@@ -3,8 +3,8 @@
     <string name="menu_add_budget">Add Budget</string>
     <string name="menu_add_item">Add Item</string>
     <string name="menu_open_pie_chart">Open Pie Chart</string>
-    <string name="menu_delete_budget">Delete Budget</string>
-    <string name="menu_delete_items">Delete Items</string>
+    <string name="menu_delete">Delete</string>
+    <string name="menu_edit">Edit</string>
     <string name="title_activity_add_budget">AddBudgetActivity</string>
     <string name="title_activity_add_items">AddItemsActivity</string>
 
@@ -20,6 +20,8 @@
     <string name="ItemsKey">Item</string>
     <string name="activity_add_items_date">Date</string>
     <string name="month">Month</string>
+    <string name="Home">Go Home</string>
+    <string name="update_button">Update</string>
 
     <string-array name="months">
         <item>January</item>

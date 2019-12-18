@@ -6,7 +6,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.CalendarView;
 import android.widget.EditText;

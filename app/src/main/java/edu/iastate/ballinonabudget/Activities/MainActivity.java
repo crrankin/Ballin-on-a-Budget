@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.PopupMenu;
 
 import java.util.List;
 
@@ -38,6 +39,37 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, BudgetActivity.class);
                 intent.putExtra("uid", selectedBudget.getUid());
                 startActivity(intent);
+            }
+        });
+
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, final long id) {
+                PopupMenu popupMenu = new PopupMenu(MainActivity.this, listView);
+                popupMenu.getMenuInflater().inflate(R.menu.delete_edit_menu, popupMenu.getMenu());
+
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.menu_edit_budget:
+                                Budget selectedBudget = budgetList.get(position);
+                                Intent intent = new Intent(MainActivity.this, EditBudgetActivity.class);
+                                intent.putExtra("uid", selectedBudget.getUid());
+                                startActivity(intent);
+                                return true;
+                            case R.id.menu_delete_budget:
+                                database.budgetDao().delete(budgetList.get(position));
+                                budgetList.remove(position);
+                                onResume();
+                                return true;
+                            default:
+                                return true;
+                        }
+                    }
+                });
+                popupMenu.show();
+                return true;
             }
         });
     }

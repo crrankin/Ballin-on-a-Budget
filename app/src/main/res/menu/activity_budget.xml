@@ -5,15 +5,10 @@
         android:title="@string/menu_add_item" />
 
     <item
-        android:id="@+id/menu_delete_item"
-        android:title="@string/menu_delete_items"/>
-
-    <item
         android:id="@+id/menu_open_pie_chart"
         android:title="@string/menu_open_pie_chart"/>
 
     <item
         android:id="@+id/menu_go_back_to_home"
-        android:title="Go Back To Home Screen"/>
-
+        android:title="@string/Home"/>
 </menu>

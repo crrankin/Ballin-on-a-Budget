@@ -5,12 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.format.DateFormat;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -81,6 +83,30 @@ public class BudgetActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, final long id) {
+                PopupMenu popupMenu = new PopupMenu(BudgetActivity.this, listView);
+                popupMenu.getMenuInflater().inflate(R.menu.delete_menu, popupMenu.getMenu());
+
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        if(item.getItemId() == R.id.menu_delete_item) {
+                            selectedBudget.removeItem(position);
+                            database.budgetDao().update(selectedBudget);
+                            onResume();
+                            return true;
+                        } else {
+                            return true;
+                        }
+                    }
+                });
+                popupMenu.show();
+                return true;
+            }
+        });
     }
 
     @Override
@@ -120,10 +146,6 @@ public class BudgetActivity extends AppCompatActivity {
                 Intent goHomeIntent = new Intent(this, MainActivity.class);
                 startActivity(goHomeIntent);
                 return true;
-//            case R.id.menu_delete_budget:
-//                Intent deleteItemIntent = new Intent(this, MainActivity.class);
-//                startActivity(deleteItemIntent);
-//                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
