@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
 import android.widget.CalendarView;
+import android.widget.CheckBox;
 import android.widget.EditText;
 
 import java.util.Calendar;
@@ -25,6 +26,7 @@ public class AddItemsActivity extends AppCompatActivity {
     private EditText amountText;
     private EditText hrefText;
     private CalendarView calendar;
+    private CheckBox checkBox;
     private int monthInt;
     private int yearInt;
 
@@ -37,6 +39,7 @@ public class AddItemsActivity extends AppCompatActivity {
         amountText = findViewById(R.id.amountInput);
         hrefText = findViewById(R.id.hyperlinkInput);
         calendar = findViewById(R.id.calendarView);
+        checkBox = findViewById(R.id.recurringCheckBox);
         Calendar cal = Calendar.getInstance();
         monthInt = cal.get(Calendar.MONTH);
         yearInt = cal.get(Calendar.YEAR);
@@ -67,9 +70,10 @@ public class AddItemsActivity extends AppCompatActivity {
         String name = nameText.getText().toString();
         double amount = Double.parseDouble(amountText.getText().toString());
         String href = hrefText.getText().toString();
+        boolean isRecurring = checkBox.isChecked();
 
         //Needs to be updated to include month, recurring, year and category.
-        Items item = new Items(name, amount, "", href, false, monthInt, yearInt);
+        Items item = new Items(name, amount, "", href, isRecurring, monthInt, yearInt);
 
         selectedBudget.addItem(item);
 

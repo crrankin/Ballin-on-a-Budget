@@ -1,5 +1,7 @@
 package edu.iastate.ballinonabudget.Objects;
 
+import androidx.annotation.NonNull;
+
 import java.io.Serializable;
 
 /*What are items in this app
@@ -74,6 +76,7 @@ public class Items implements Serializable {
     }
 
     @Override
+    @NonNull
     public String toString() {
         return purchaseName + " ... " + purchaseAmount;
     }
