@@ -18,6 +18,9 @@ import edu.iastate.ballinonabudget.DatabaseConfig.AppDatabase;
 import edu.iastate.ballinonabudget.Objects.Budget;
 import edu.iastate.ballinonabudget.R;
 
+/**
+ * List of Budgets by Category
+ */
 public class MainActivity extends AppCompatActivity {
 
     private AppDatabase database;
@@ -74,6 +77,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * OnResume re-intializes our values in case of refresh
+     */
     @Override
     protected void onResume() {
         super.onResume();
@@ -83,12 +89,22 @@ public class MainActivity extends AppCompatActivity {
         listView.setAdapter(adapter);
     }
 
+    /**
+     * Adds Menu on Creation clicked.
+     * @param menu
+     * @return true
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.activity_main, menu);
         return true;
     }
 
+    /**
+     *
+     * @param item
+     * @return
+     */
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_add_budget:
