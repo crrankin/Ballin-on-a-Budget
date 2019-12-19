@@ -100,6 +100,10 @@ public class Budget {
         return currentTotal;
     }
 
+    public double getBalanceForMonth(int month){
+        return totalAmount - getCurrentTotalForMonth(month);
+    }
+
     public List<Items> getItemsForMonth(int month) {
         List<Items> listToShow = new ArrayList<>();
 

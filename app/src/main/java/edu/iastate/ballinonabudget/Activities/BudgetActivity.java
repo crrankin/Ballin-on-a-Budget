@@ -3,6 +3,8 @@ package edu.iastate.ballinonabudget.Activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.location.Location;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.view.ContextMenu;
@@ -37,6 +39,7 @@ public class BudgetActivity extends AppCompatActivity {
     private String[] monthsArray;
     private TextView monthView;
     private TextView currentTotal;
+    private TextView balance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +70,7 @@ public class BudgetActivity extends AppCompatActivity {
         monthView.setText(monthName);
 
         currentTotal = findViewById(R.id.current_total);
+        balance = findViewById(R.id.balance);
 
         itemsList = selectedBudget.getItems();
 
@@ -118,6 +122,14 @@ public class BudgetActivity extends AppCompatActivity {
         List<Items> listToShow = selectedBudget.getItemsForMonth(currentMonth);
 
         currentTotal.setText(String.format(Locale.ENGLISH, "%1$,.2f", getCurrentTotal(listToShow)));
+        //get balance and change it's color based on positive/negative
+        double remainingBalance = getBalance();
+        balance.setText(String.format(Locale.ENGLISH,"%1$,.2f", remainingBalance));
+        if(remainingBalance<0){
+            balance.setBackgroundColor(Color.RED);
+        }else{
+            balance.setBackgroundColor(Color.GREEN);
+        }
 
         ArrayAdapter<Items> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, listToShow);
@@ -176,5 +188,9 @@ public class BudgetActivity extends AppCompatActivity {
 
     public double getCurrentTotal(List<Items> list) {
         return selectedBudget.getCurrentTotalForMonth(currentMonth);
+    }
+
+    public double getBalance(){
+        return selectedBudget.getBalanceForMonth(currentMonth);
     }
 }
