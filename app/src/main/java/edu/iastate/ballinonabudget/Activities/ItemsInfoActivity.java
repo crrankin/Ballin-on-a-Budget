@@ -18,6 +18,9 @@ import edu.iastate.ballinonabudget.Objects.Budget;
 import edu.iastate.ballinonabudget.Objects.Items;
 import edu.iastate.ballinonabudget.R;
 
+/**
+ * ItemsInfoActivity gives the values of the the existing items.
+ */
 public class ItemsInfoActivity extends AppCompatActivity {
     private AppDatabase database;
     private Items items;
@@ -61,7 +64,6 @@ public class ItemsInfoActivity extends AppCompatActivity {
         TextView hyperlink = findViewById(R.id.item_hyperlink);
         hyperlink.setText(items.getHyperlink());
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.activity_budget, menu);

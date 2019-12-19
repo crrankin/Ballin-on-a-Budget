@@ -11,6 +11,9 @@ import edu.iastate.ballinonabudget.DatabaseConfig.AppDatabase;
 import edu.iastate.ballinonabudget.Objects.Budget;
 import edu.iastate.ballinonabudget.R;
 
+/**
+ * EditBudgetActivity is where it is possible to adjust the value of the budgets
+ */
 public class EditBudgetActivity extends AppCompatActivity {
 
     private AppDatabase database;
