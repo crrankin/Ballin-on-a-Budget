@@ -1,10 +1,4 @@
 package edu.iastate.ballinonabudget.Objects;
-/**
- * This class represents a monthly budget
- * that allows a user to create a name, amount, and items.
- * Each budget has a unique identifier.
- */
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +9,11 @@ import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 
 import edu.iastate.ballinonabudget.DatabaseConfig.BudgetTypeConverters;
+/**
+ * This class represents a monthly budget
+ * that allows a user to create a name, amount, and items.
+ * Each budget has a unique identifier.
+ */
 
 @Entity(tableName = "budget")
 public class Budget {
@@ -42,55 +41,104 @@ public class Budget {
         this.totalAmount = totalAmount;
     }
 
-    /*
-        Getters and Setters for private variables
+    /**
+     * Getters and Setters for private variables
+     */
+
+    /**
+     * Returns id of the budget
      */
     public int getUid(){
         return this.uid;
     }
 
+    /**
+     * Returns the title of the budget
+     * @return title of the budget
+     */
     public String getTitle(){
         return this.title;
     }
 
+    /**
+     * Returns the total amount allowed for the budget
+     * @return total amount
+     */
     public double getTotalAmount(){
         return this.totalAmount;
     }
 
+    /**
+     * Returns the items that are inside of the budget
+     * @return items
+     */
     public List<Items> getItems() {
         return this.items;
     }
 
+    /**
+     * Allows the user to edit the budget id
+     * @param uid id of the budget
+     */
     public void  setUid(int uid) {
         this.uid = uid;
     }
 
+    /**
+     * User's can edit the name of the budget
+     * @param name new budget name
+     */
     public void setName(String name){
         this.title = name;
     }
 
+    /**
+     * Change the total amount alloted for the budget
+     * @param totalAmount new amount for budget
+     */
     public void setTotalAmount(double totalAmount){
         this.totalAmount = totalAmount;
     }
 
+    /**
+     * Assigns items to a budget
+     * @param items list of items to a budget
+     */
     public void setItems(List<Items> items) {
         this.items = items;
     }
 
+    /**
+     * Adds an item to a budget
+     * @param item the item to be added
+     */
     public void addItem(Items item) {
         items.add(item);
     }
 
+    /**
+     * Removes an item from a budget
+     * @param i item to be removed from budget
+     */
     public void removeItem(int i) {
         items.remove(i);
     }
 
+    /**
+     * Returns the name of the budget as a string
+     * @return budget name
+     */
     @Override
     @NonNull
     public String toString() {
         return title;
     }
 
+    /**
+     * Returns the current amount of money spent in a budget
+     * @param month month of the budget
+     * @return current amount of money spent in that month
+     */
     public double getCurrentTotalForMonth(int month) {
         double currentTotal = 0.0;
         for(Items i : getItems()) {
@@ -103,10 +151,20 @@ public class Budget {
         return currentTotal;
     }
 
+    /**
+     * Returns the remaining amount of money for the month
+     * @param month month of the budget
+     * @return remaining amount of money to spend
+     */
     public double getBalanceForMonth(int month){
         return totalAmount - getCurrentTotalForMonth(month);
     }
 
+    /**
+     * Returns the items in a budget in a given month
+     * @param month month of a budget
+     * @return items spent in a month
+     */
     public List<Items> getItemsForMonth(int month) {
         List<Items> listToShow = new ArrayList<>();
         for(Items i : getItems()) {
