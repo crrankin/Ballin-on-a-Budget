@@ -152,6 +152,7 @@ public class BudgetActivity extends AppCompatActivity {
             case R.id.menu_open_pie_chart:
                 Intent pieChartIntent = new Intent(this, PiechartActivity.class);
                 pieChartIntent.putExtra("uid", id);
+                pieChartIntent.putExtra("month", currentMonth);
                 startActivity(pieChartIntent);
                 return true;
             case R.id.menu_go_back_to_home:

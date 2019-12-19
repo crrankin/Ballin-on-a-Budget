@@ -9,6 +9,7 @@ package edu.iastate.ballinonabudget.Objects;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -86,6 +87,7 @@ public class Budget {
     }
 
     @Override
+    @NonNull
     public String toString() {
         return title;
     }
@@ -94,6 +96,8 @@ public class Budget {
         double currentTotal = 0.0;
         for(Items i : getItems()) {
             if(i.getPurchaseMonth() == month) {
+                currentTotal += i.getPurchaseAmount();
+            } else if (i.isRecurring()) {
                 currentTotal += i.getPurchaseAmount();
             }
         }
@@ -109,6 +113,8 @@ public class Budget {
 
         for(Items i : getItems()) {
             if(i.getPurchaseMonth() == month) {
+                listToShow.add(i);
+            } else if (i.isRecurring()) {
                 listToShow.add(i);
             }
         }

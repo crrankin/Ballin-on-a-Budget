@@ -23,6 +23,8 @@
     <string name="Home">Go Home</string>
     <string name="update_button">Update</string>
     <string name="budget_form_balance">Balance</string>
+    <string name="recurring">Recurring Item</string>
+    <string name="remaining_balance">Remaining Balance</string>
 
     <string-array name="months">
         <item>January</item>

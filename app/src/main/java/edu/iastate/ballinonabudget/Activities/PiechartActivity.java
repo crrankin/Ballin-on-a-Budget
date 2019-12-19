@@ -22,6 +22,7 @@ public class PiechartActivity extends AppCompatActivity {
 
     private AppDatabase database;
     private Budget selectedBudget;
+    private int currentMonth;
     private List<Items> items = new ArrayList<>();
     private List<String> itemNames= new ArrayList<>();
     private List<Double> itemPrices = new ArrayList<>();
@@ -36,14 +37,16 @@ public class PiechartActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         int id = intent.getIntExtra("uid", 0);
+        int currentMonth = intent.getIntExtra("month", 0);
         selectedBudget = database.budgetDao().findByID(id);
 
         PieChartView pieChartView = findViewById(R.id.chart);
 
-        items = selectedBudget.getItems();
+        items = selectedBudget.getItemsForMonth(currentMonth);
         for(Items item : items){
             pieData.add(new SliceValue((float) item.getPurchaseAmount(), getRandomColor()).setLabel(item.getPurchaseTitle()));
         }
+        pieData.add(new SliceValue((float) (selectedBudget.getTotalAmount() - selectedBudget.getCurrentTotalForMonth(currentMonth)), getRandomColor()).setLabel(getString(R.string.remaining_balance)));
         PieChartData pieChartData = new PieChartData(pieData);
         pieChartData.setHasLabels(true);
         pieChartView.setPieChartData(pieChartData);
