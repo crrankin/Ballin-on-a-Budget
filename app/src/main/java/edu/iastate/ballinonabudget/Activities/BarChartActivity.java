@@ -10,11 +10,9 @@ import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
-import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 
 import edu.iastate.ballinonabudget.DatabaseConfig.AppDatabase;
 import edu.iastate.ballinonabudget.Objects.Budget;
@@ -49,20 +47,23 @@ public class BarChartActivity extends AppCompatActivity {
         BarChart barChart = findViewById(R.id.BarChart);
 
         ArrayList<BarEntry> entries = new ArrayList<>();
-       // ArrayList<String> labels = new ArrayList<>();
-        BarDataSet bardataset = new BarDataSet(entries, "Cells");
+        ArrayList<String> labels = new ArrayList<>();
 
         for (int i = 0; i < 12; i++) { //for each month in this budget
             //add a new entry that states how much we spent each month
             entries.add(new BarEntry(i, (float) selectedBudget.getCurrentTotalForMonth(i)));
-            //labels.add(i, monthsArray[i]);
+            labels.add(i, monthsArray[i]);
         }
 
         System.out.println(entries.toString());
 
+        BarDataSet bardataset = new BarDataSet(entries, "Cells");
         BarData data = new BarData(bardataset);
+        data.setBarWidth(0.9f);
         barChart.setData(data); // set the data into the chart
-        //barChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(labels));
+        barChart.setFitBars(true); // make the x-axis fit exactly all bars
+        barChart.invalidate();
+        barChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(labels));
         bardataset.setColors(ColorTemplate.COLORFUL_COLORS);
         barChart.animateY(5000);
     }
