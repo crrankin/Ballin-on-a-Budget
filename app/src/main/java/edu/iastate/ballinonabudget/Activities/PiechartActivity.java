@@ -20,12 +20,6 @@ import lecho.lib.hellocharts.view.PieChartView;
 
 public class PiechartActivity extends AppCompatActivity {
 
-    private AppDatabase database;
-    private Budget selectedBudget;
-    private int currentMonth;
-    private List<Items> items = new ArrayList<>();
-    private List<String> itemNames= new ArrayList<>();
-    private List<Double> itemPrices = new ArrayList<>();
     List<SliceValue> pieData = new ArrayList<>();
 
     @Override
@@ -33,16 +27,16 @@ public class PiechartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_piechart);
 
-        database = AppDatabase.getAppDatabase(this);
+        AppDatabase database = AppDatabase.getAppDatabase(this);
 
         Intent intent = getIntent();
         int id = intent.getIntExtra("uid", 0);
         int currentMonth = intent.getIntExtra("month", 0);
-        selectedBudget = database.budgetDao().findByID(id);
+        Budget selectedBudget = database.budgetDao().findByID(id);
 
         PieChartView pieChartView = findViewById(R.id.chart);
 
-        items = selectedBudget.getItemsForMonth(currentMonth);
+        List<Items> items = selectedBudget.getItemsForMonth(currentMonth);
         for(Items item : items){
             pieData.add(new SliceValue((float) item.getPurchaseAmount(), getRandomColor()).setLabel(item.getPurchaseTitle()));
         }
@@ -50,9 +44,6 @@ public class PiechartActivity extends AppCompatActivity {
         PieChartData pieChartData = new PieChartData(pieData);
         pieChartData.setHasLabels(true);
         pieChartView.setPieChartData(pieChartData);
-
-
-
         //Found a handy tutorial for making Pie Charts:) thx b
         //https://www.codingdemos.com/android-pie-chart-tutorial/
     }
