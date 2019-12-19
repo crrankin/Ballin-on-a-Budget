@@ -13,6 +13,11 @@ import edu.iastate.ballinonabudget.Objects.Items;
 
 public class BudgetTypeConverters {
 
+    /**
+     * Converts a string to an item list
+     * @param data string
+     * @return list
+     */
     @TypeConverter
     public static List<Items> stringToItemList(String data) {
         Gson gson = new Gson();
@@ -23,6 +28,11 @@ public class BudgetTypeConverters {
         return gson.fromJson(data, listType);
     }
 
+    /**
+     * Takes an item list and returns it as a string
+     * @param itemList list of items
+     * @return string of items
+     */
     @TypeConverter
     public static String ItemListToString(List<Items> itemList) {
         Gson gson = new Gson();
