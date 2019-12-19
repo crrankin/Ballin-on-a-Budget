@@ -18,6 +18,9 @@ import lecho.lib.hellocharts.model.PieChartData;
 import lecho.lib.hellocharts.model.SliceValue;
 import lecho.lib.hellocharts.view.PieChartView;
 
+/**
+ * Creates the Monthly Piecharts for the budgets
+ */
 public class PiechartActivity extends AppCompatActivity {
 
     List<SliceValue> pieData = new ArrayList<>();
@@ -48,7 +51,11 @@ public class PiechartActivity extends AppCompatActivity {
         //https://www.codingdemos.com/android-pie-chart-tutorial/
     }
 
-    public int getRandomColor(){
+    /**
+     * Makes random colors for the pie chart
+     * @return Rando Colors
+     */
+    private int getRandomColor(){
         Random rnd = new Random();
         return Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
     }
