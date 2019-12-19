@@ -18,12 +18,15 @@ import edu.iastate.ballinonabudget.DatabaseConfig.AppDatabase;
 import edu.iastate.ballinonabudget.Objects.Budget;
 import edu.iastate.ballinonabudget.R;
 
+/**
+ * This class represents our yearly budget spendings as a bar chart
+ */
 public class BarChartActivity extends AppCompatActivity {
 
-    private AppDatabase database;
-    private Budget selectedBudget;
-    private int id;
-    private String[] monthsArray;
+    private AppDatabase database; //database of the app
+    private Budget selectedBudget; //the current budget we are working with
+    private int id; //id for intents
+    private String[] monthsArray; //string array of months
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +47,10 @@ public class BarChartActivity extends AppCompatActivity {
         super.onResume();
         database = AppDatabase.getAppDatabase(this);
         selectedBudget = database.budgetDao().findByID(id);
-        BarChart barChart = findViewById(R.id.BarChart);
+        BarChart barChart = findViewById(R.id.BarChart); //creates a new bar chart
 
-        ArrayList<BarEntry> entries = new ArrayList<>();
-        ArrayList<String> labels = new ArrayList<>();
+        ArrayList<BarEntry> entries = new ArrayList<>(); //list of amount spend each month
+        ArrayList<String> labels = new ArrayList<>(); //list of each month in a year
 
         for (int i = 0; i < 12; i++) { //for each month in this budget
             //add a new entry that states how much we spent each month
@@ -55,16 +58,14 @@ public class BarChartActivity extends AppCompatActivity {
             labels.add(i, monthsArray[i]);
         }
 
-        System.out.println(entries.toString());
-
-        BarDataSet bardataset = new BarDataSet(entries, "Cells");
-        BarData data = new BarData(bardataset);
-        data.setBarWidth(0.9f);
+        BarDataSet bardataset = new BarDataSet(entries, "Cells"); //this graphs our bar chart
+        BarData data = new BarData(bardataset); //fills the cart with data
+        data.setBarWidth(0.9f); // sets the bar chart width
         barChart.setData(data); // set the data into the chart
         barChart.setFitBars(true); // make the x-axis fit exactly all bars
         barChart.invalidate();
-        barChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(labels));
+        barChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(labels)); // shows the labels
         bardataset.setColors(ColorTemplate.COLORFUL_COLORS);
-        barChart.animateY(5000);
+        barChart.animateY(5000); // cute little animation
     }
 }

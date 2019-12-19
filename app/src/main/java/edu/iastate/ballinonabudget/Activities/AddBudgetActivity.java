@@ -12,20 +12,24 @@ import edu.iastate.ballinonabudget.DatabaseConfig.AppDatabase;
 import edu.iastate.ballinonabudget.Objects.Budget;
 import edu.iastate.ballinonabudget.R;
 
+/**
+ * This class adds a new budget
+ */
 public class AddBudgetActivity extends AppCompatActivity {
 
     private AppDatabase database;
-    private EditText nameText;
-    private EditText amountText;
+    private EditText nameText; //name of the budget
+    private EditText amountText; //amount allocated for the budget
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_budget);
 
+        //grabs the name and the amount for a new budget
         nameText = findViewById(R.id.nameInputBudget);
         amountText = findViewById(R.id.maxAmountInput);
-
+        
         database = AppDatabase.getAppDatabase(this);
     }
 
