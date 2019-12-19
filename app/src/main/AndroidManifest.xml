@@ -21,6 +21,7 @@
         <activity android:name=".Activities.ItemsInfoActivity" />
         <activity android:name=".Activities.PiechartActivity" />
         <activity android:name=".Activities.BudgetActivity" />
+        <activity android:name=".Activities.BarChartActivity" />
         <activity android:name=".Activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

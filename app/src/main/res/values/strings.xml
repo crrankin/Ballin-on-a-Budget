@@ -21,8 +21,10 @@
     <string name="activity_add_items_date">Date</string>
     <string name="month">Month</string>
     <string name="Home">Go Home</string>
+    <string name="YearlyBudget">View Yearly Budget</string>
     <string name="update_button">Update</string>
     <string name="budget_form_balance">Balance</string>
+    <string name="barchart_description">Yearly Budget View</string>
 
     <string-array name="months">
         <item>January</item>

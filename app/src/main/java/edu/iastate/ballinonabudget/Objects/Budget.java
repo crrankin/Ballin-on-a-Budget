@@ -1,6 +1,5 @@
 package edu.iastate.ballinonabudget.Objects;
 /**
- * @author: Caroline Rankin (crrankin)
  * This class represents a monthly budget
  * that allows a user to create a name, amount, and items.
  * Each budget has a unique identifier.
@@ -106,13 +105,11 @@ public class Budget {
 
     public List<Items> getItemsForMonth(int month) {
         List<Items> listToShow = new ArrayList<>();
-
         for(Items i : getItems()) {
             if(i.getPurchaseMonth() == month) {
                 listToShow.add(i);
             }
         }
-
         return listToShow;
     }
 }

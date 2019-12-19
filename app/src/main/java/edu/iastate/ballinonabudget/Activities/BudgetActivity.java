@@ -158,6 +158,11 @@ public class BudgetActivity extends AppCompatActivity {
                 Intent goHomeIntent = new Intent(this, MainActivity.class);
                 startActivity(goHomeIntent);
                 return true;
+            case R.id.menu_view_yearly_budget:
+                Intent yearlyBudgetIntent = new Intent(this, BarChartActivity.class);
+                yearlyBudgetIntent.putExtra("uid", id);
+                startActivity(yearlyBudgetIntent);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

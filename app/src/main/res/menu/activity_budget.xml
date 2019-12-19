@@ -11,4 +11,8 @@
     <item
         android:id="@+id/menu_go_back_to_home"
         android:title="@string/Home"/>
+
+    <item
+        android:id="@+id/menu_view_yearly_budget"
+        android:title="@string/YearlyBudget"/>
 </menu>
